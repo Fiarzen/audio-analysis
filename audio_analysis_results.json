@@ -1,0 +1,36 @@
+[
+  {
+    "file_name": "Ephemeral.mp3",
+    "duration_seconds": 60.0,
+    "tempo_bpm": 135.99917763157896,
+    "estimated_key": "B",
+    "features": {
+      "spectral_centroid_mean": 1632.2784788685212,
+      "spectral_centroid_std": 1066.9195503424828,
+      "spectral_rolloff_mean": 3380.646224361455,
+      "zero_crossing_rate_mean": 0.05998773250048375,
+      "rms_energy_mean": 0.05725579336285591,
+      "rms_energy_std": 0.036568403244018555,
+      "mfcc_means": [
+        -293.7254943847656,
+        117.41425323486328,
+        19.555139541625977,
+        35.88803482055664,
+        7.506927967071533,
+        10.068586349487305,
+        0.4117424190044403,
+        3.010658025741577,
+        1.6049091815948486,
+        -0.31063371896743774,
+        -5.1238322257995605,
+        6.41766357421875,
+        -6.6779890060424805
+      ]
+    },
+    "mood_indicators": {
+      "energy_level": "Medium Energy",
+      "brightness": "Balanced",
+      "rhythmic_stability": "Dynamic"
+    }
+  }
+]
