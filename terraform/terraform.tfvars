@@ -1,0 +1,5 @@
+project_id         = "dynamic-hub-471412-r1"
+region             = "europe-west1"
+bucket_name        = "audio-files-dynamic-hub-471412-r1"
+bucket_location    = "eu"
+firestore_location = "eur3"
