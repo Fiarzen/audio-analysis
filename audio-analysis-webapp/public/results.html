@@ -1,34 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Audio Analysis - Results</title>
-    <link rel="stylesheet" href="css/results.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/results.css" />
+  </head>
+  <body>
     <div class="container">
-        <div class="header">
-            <h1>📊 Analysis Results</h1>
-            <p>View all your analyzed audio files</p>
-            <a href="/" class="nav-link">← Upload New File</a>
-        </div>
-        
-        <div id="loadingContainer" class="loading">
-            <div class="spinner"></div>
-            <p>Loading results...</p>
-        </div>
-        
-        <div id="resultsContainer" class="results-grid" style="display: none;"></div>
-        
-        <div id="emptyContainer" class="empty-state" style="display: none;">
-            <div class="empty-icon">🎵</div>
-            <h2>No analyses yet</h2>
-            <p>Upload your first audio file to get started!</p>
-            <a href="/" class="nav-link" style="margin-top: 20px;">→ Upload Audio File</a>
-        </div>
+      <div class="header">
+        <h1>📊 Analysis Results</h1>
+        <p>View all your analyzed audio files</p>
+        <a href="/" class="nav-link">← Upload New File</a>
+      </div>
+
+      <div id="loadingContainer" class="loading">
+        <div class="spinner"></div>
+        <p>Loading results...</p>
+      </div>
+
+      <div
+        id="resultsContainer"
+        class="results-grid"
+        style="display: none"
+      ></div>
+
+      <div id="emptyContainer" class="empty-state" style="display: none">
+        <div class="empty-icon">🎵</div>
+        <h2>No analyses yet</h2>
+        <p>Upload your first audio file to get started!</p>
+        <a href="/" class="nav-link" style="margin-top: 20px"
+          >→ Upload Audio File</a
+        >
+      </div>
     </div>
 
     <script src="js/results.js"></script>
-</body>
+  </body>
 </html>

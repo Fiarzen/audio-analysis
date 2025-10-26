@@ -40,6 +40,17 @@ uploadArea.addEventListener("drop", (e) => {
 });
 
 function handleFile(file) {
+  const MAX_SIZE_MB = 10; // set your limit here
+  const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
+
+  if (file.size > MAX_SIZE_BYTES) {
+    message.textContent = `File too large! Maximum size is ${MAX_SIZE_MB} MB.`;
+    message.className = "message error show";
+    fileInfo.classList.remove("show");
+    uploadBtn.disabled = true;
+    selectedFile = null;
+    return;
+  }
   selectedFile = file;
   fileName.textContent = file.name;
   fileSize.textContent = formatBytes(file.size);

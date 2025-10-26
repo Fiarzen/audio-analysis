@@ -1,41 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Audio Analysis - Upload</title>
-    <link rel="stylesheet" href="css/index.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1>🎵 Audio Analysis</h1>
-        <p class="subtitle">Upload your music files for automatic analysis</p>
-        
-        <div class="upload-area" id="uploadArea">
-            <div class="upload-icon">📁</div>
-            <h3>Drop your audio file here</h3>
-            <p>or click to browse</p>
-            <input type="file" id="fileInput" accept=".mp3,.wav,.flac,.m4a,.aac">
-        </div>
-        
-        <div class="file-info" id="fileInfo">
-            <strong>Selected file:</strong> <span id="fileName"></span><br>
-            <strong>Size:</strong> <span id="fileSize"></span>
-        </div>
-        
-        <button id="uploadBtn" disabled>Upload & Analyze</button>
-        
-        <div class="spinner" id="spinner"></div>
-        
-        <div class="message" id="message"></div>
-        
-        <p class="supported-formats">
-            Supported formats: MP3, WAV, FLAC, M4A, AAC (Max 50MB)
-        </p>
-        
-        <a href="/results" class="nav-link">→ View All Results</a>
+      <h1>🎵 Audio Analysis</h1>
+      <p class="subtitle">Upload your music files for automatic analysis</p>
+
+      <div class="upload-area" id="uploadArea">
+        <div class="upload-icon">📁</div>
+        <h3>Drop your audio file here</h3>
+        <p>or click to browse</p>
+        <input type="file" id="fileInput" accept=".mp3,.wav,.flac,.m4a,.aac" />
+      </div>
+
+      <div class="file-info" id="fileInfo">
+        <strong>Selected file:</strong> <span id="fileName"></span><br />
+        <strong>Size:</strong> <span id="fileSize"></span>
+      </div>
+
+      <button id="uploadBtn" disabled>Upload & Analyze</button>
+
+      <div class="spinner" id="spinner"></div>
+
+      <div class="message" id="message"></div>
+
+      <p class="supported-formats">
+        Supported formats: MP3, WAV, FLAC, M4A, AAC (Max 50MB)
+      </p>
+
+      <a href="/results" class="nav-link">→ View All Results</a>
     </div>
 
     <script src="js/index.js"></script>
-</body>
+  </body>
 </html>

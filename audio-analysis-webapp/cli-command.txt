@@ -1,0 +1,10 @@
+gcloud run deploy audio-analysis-web \
+  --source . \
+  --region=europe-west1 \
+  --platform=managed \
+  --allow-unauthenticated \
+  --memory=512Mi \
+  --timeout=300 \
+  --env-vars-file=env.yaml
+
+gcloud run services delete audio-analysis-web --region=europe-west1
