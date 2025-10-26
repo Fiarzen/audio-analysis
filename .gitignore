@@ -2,3 +2,6 @@ venv
 music-files
 audio_analysis_results.json
 summary.txt
+.env
+node_modules/
+.DS_Store
