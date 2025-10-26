@@ -1,5 +1,8 @@
 # Audio Analysis Setup Guide
 
+## About
+This is a project to test google cloud deployment of an audio-analysis function. It can also be run locally.
+
 ## Prerequisites
 
 1. **Python 3.8+** installed on your system
@@ -72,30 +75,5 @@ print("All packages installed successfully!")
 }
 ```
 
-## Common Issues and Solutions
-
-### Installation Problems
-- **Windows**: You might need to install Microsoft C++ Build Tools
-- **macOS**: Install Xcode Command Line Tools: `xcode-select --install`
-- **Linux**: Install system audio libraries: `sudo apt-get install libsndfile1`
-
-### Audio File Issues
-- **Unsupported format**: Convert files to MP3/WAV using online converters
-- **Corrupted files**: librosa will show an error message for unreadable files
-- **Very long files**: The script analyzes only the first 60 seconds by default
-
-## Next Steps
-
-Once this works locally:
-1. **Experiment** with different music genres to see how features vary
-2. **Modify** the analysis parameters (duration, number of MFCCs, etc.)
-3. **Add** new features like mood classification or genre prediction
-4. **Prepare** for Google Cloud deployment
-
-## Files You Need
-
-1. The main Python script (audio_analysis.py)
-2. A folder with some music files for testing
-3. This requirements file for reference
 
 Start with 3-5 songs from different genres to see how the analysis varies!

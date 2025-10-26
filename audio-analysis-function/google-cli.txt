@@ -1,0 +1,27 @@
+gcloud functions deploy process-audio \
+  --gen2 \
+  --runtime=python311 \
+  --region=europe-west1 \
+  --source=./audio-analysis-function \
+  --entry-point=process_audio \
+  --trigger-location=eu \
+  --trigger-event-filters="type=google.cloud.storage.object.v1.finalized" \
+  --trigger-event-filters="bucket=audio-files-dynamic-hub-471412-r1" \
+  --timeout=540s \
+  --memory=1GB
+
+  gcloud projects add-iam-policy-binding dynamic-hub-471412-r1 \
+  --member="serviceAccount:759104936187-compute@developer.gserviceaccount.com" \
+  --role="roles/eventarc.eventReceiver"
+
+gcloud projects add-iam-policy-binding dynamic-hub-471412-r1 \
+  --member="serviceAccount:service-759104936187@gcp-sa-pubsub.iam.gserviceaccount.com" \
+  --role="roles/iam.serviceAccountTokenCreator"
+
+  # Get your project number
+PROJECT_NUMBER=$(gcloud projects describe dynamic-hub-471412-r1 --format="value(projectNumber)")
+
+# Grant the Cloud Storage service account Pub/Sub Publisher role
+gcloud projects add-iam-policy-binding dynamic-hub-471412-r1 \
+  --member="serviceAccount:service-${PROJECT_NUMBER}@gs-project-accounts.iam.gserviceaccount.com" \
+  --role="roles/pubsub.publisher"
