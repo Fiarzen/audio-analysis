@@ -73,12 +73,12 @@ resource "google_storage_bucket" "audio_files" {
 # Firestore database
 resource "google_firestore_database" "database" {
   project     = var.project_id
-  name        = "(default)"
+  name        = "audio-analysis-db"
   location_id = var.firestore_location
   type        = "FIRESTORE_NATIVE"
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 
   depends_on = [google_project_service.firestore]
