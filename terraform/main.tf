@@ -73,13 +73,10 @@ resource "google_storage_bucket" "audio_files" {
 # Firestore database
 resource "google_firestore_database" "database" {
   project     = var.project_id
-  name        = "audio-analysis-db"
+  name        = "(default)"
   location_id = var.firestore_location
   type        = "FIRESTORE_NATIVE"
 
-  lifecycle {
-    prevent_destroy = false
-  }
 
   depends_on = [google_project_service.firestore]
 }
@@ -193,8 +190,20 @@ resource "google_cloudfunctions2_function" "audio_analysis" {
     google_project_service.cloudbuild,
     google_project_service.eventarc,
     google_storage_bucket.audio_files,
-    google_project_iam_member.gcs_pubsub_publisher
+    google_project_iam_member.gcs_pubsub_publisher,
+    google_project_iam_member.function_eventarc_receiver,
+    google_project_iam_member.function_storage_viewer,
+    google_project_iam_member.function_firestore_user
   ]
+}
+
+# Allow Eventarc to invoke the Cloud Function
+resource "google_cloud_run_v2_service_iam_member" "function_invoker" {
+  project  = var.project_id
+  location = var.region
+  name     = google_cloudfunctions2_function.audio_analysis.name
+  role     = "roles/run.invoker"
+  member   = "serviceAccount:${google_service_account.function_sa.email}"
 }
 
 # Service account for Cloud Run
