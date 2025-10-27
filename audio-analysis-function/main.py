@@ -102,22 +102,23 @@ def classify_rhythm_stability(zcr_std):
 @functions_framework.cloud_event
 def process_audio(cloud_event):
     """
-    Cloud Function triggered by Cloud Storage when a file is uploaded
+    Cloud Function triggered by Cloud Storage when a file is uploaded.
+    This is the entry point - must match the entry_point in terraform.
     """
-    data = cloud_event.data
-    
-    bucket_name = data["bucket"]
-    file_name = data["name"]
-    
-    print(f"Processing file: {file_name} from bucket: {bucket_name}")
-    
-    # Skip if not an audio file
-    audio_extensions = ['.mp3', '.wav', '.flac', '.m4a', '.aac']
-    if not any(file_name.lower().endswith(ext) for ext in audio_extensions):
-        print(f"Skipping non-audio file: {file_name}")
-        return
-    
     try:
+        data = cloud_event.data
+        
+        bucket_name = data["bucket"]
+        file_name = data["name"]
+        
+        print(f"Processing file: {file_name} from bucket: {bucket_name}")
+        
+        # Skip if not an audio file
+        audio_extensions = ['.mp3', '.wav', '.flac', '.m4a', '.aac']
+        if not any(file_name.lower().endswith(ext) for ext in audio_extensions):
+            print(f"Skipping non-audio file: {file_name}")
+            return
+        
         # Download the file to a temporary location
         bucket = storage_client.bucket(bucket_name)
         blob = bucket.blob(file_name)
@@ -143,21 +144,23 @@ def process_audio(cloud_event):
         
         # Store results in Firestore
         doc_id = file_name.replace('/', '_').replace('.', '_')
+        print(f"Storing in Firestore with doc_id: {doc_id}")
         db.collection('audio_analyses').document(doc_id).set(analysis_result)
         
         print(f"Analysis complete and stored in Firestore: {doc_id}")
         print(f"Results: Tempo={analysis_result['tempo_bpm']:.1f} BPM, Key={analysis_result['estimated_key']}")
         
     except Exception as e:
-        error_msg = f"Error processing {file_name}: {str(e)}"
+        error_msg = f"Error processing {file_name if 'file_name' in locals() else 'unknown file'}: {str(e)}"
         print(error_msg)
         
-        # Store error in Firestore
-        doc_id = file_name.replace('/', '_').replace('.', '_')
-        db.collection('audio_analyses').document(doc_id).set({
-            'file_name': file_name,
-            'error': str(e),
-            'processed_at': datetime.utcnow().isoformat()
-        })
+        # Store error in Firestore if we have the filename
+        if 'file_name' in locals():
+            doc_id = file_name.replace('/', '_').replace('.', '_')
+            db.collection('audio_analyses').document(doc_id).set({
+                'file_name': file_name,
+                'error': str(e),
+                'processed_at': datetime.utcnow().isoformat()
+            })
         
         raise Exception(error_msg)

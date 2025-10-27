@@ -22,6 +22,9 @@ gcloud projects add-iam-policy-binding dynamic-hub-471412-r1 \
 PROJECT_NUMBER=$(gcloud projects describe dynamic-hub-471412-r1 --format="value(projectNumber)")
 
 # Grant the Cloud Storage service account Pub/Sub Publisher role
-gcloud projects add-iam-policy-binding dynamic-hub-471412-r1 \
+gcloud projects add-iam-policy-binding  \
   --member="serviceAccount:service-${PROJECT_NUMBER}@gs-project-accounts.iam.gserviceaccount.com" \
   --role="roles/pubsub.publisher"
+
+terraform import google_firestore_database.database "projects/dynamic-hub-471412-r1/databases/(default)"
+
